@@ -14,8 +14,8 @@ def primo(n):
 					return x
 
 
-def hash(k, a, b, p, m):
-	return ((a*k+b)%p)%m
+def hash(a, b, p, m):
+	return lambda k : ((a*k+b)%p)%m
 
 
 def a_b(p):
@@ -35,23 +35,45 @@ def h_buena(c,n):
 
 n = 10
 m = n
-conjunto = S(n)
+conjunto = {3, 10, 22, 37, 40, 52, 60, 70, 72, 75}
 p = primo(n)
 tabla = [{} for x in range(n)]
-count = 0
+m_i = []
 
 while 1:
 	a,b = a_b(p)
 	c = [0 for i in range(n)]
+	m_i = []
 	for k in conjunto:
-		i = hash(k,a,b,p,m)
-		tabla[i] = k
+		h = hash(a,b,p,m)
+		i = h(k)
 		c[i] = c[i] + 1
-	##print(a,b) funciona
 	if h_buena(c, n):
+		for i in c:
+			m_i.append(i**2)
 		break
 
-print(conjunto)
-print(tabla)
-print(c)
+
+for i in range(n):
+	if m_i[i] != 0:
+		a,b = a_b(p)
+		tabla[i]['a'] = a
+		tabla[i]['b'] = b
+		tabla[i]['m'] = m_i[i]
+		tabla[i]['S'] = [0 for i in range(m_i[i])]
+
+
+#insertar
+for i in range(len(conjunto)):
+	k = conjunto[i]
+	hi = hash() ##continuar aquí
+	tabla[h(k)]['S'][]
+
+
+
+#print(conjunto)
+
+#print(tabla)
+#print(c)
+#print(m_i)
 
