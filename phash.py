@@ -35,7 +35,7 @@ def h_buena(c,n):
 
 n = 10
 m = n
-conjunto = {3, 10, 22, 37, 40, 52, 60, 70, 72, 75}
+conjunto = [3, 10, 22, 37, 40, 52, 60, 70, 82, 95]
 p = primo(n)
 tabla = [{} for x in range(n)]
 m_i = []
@@ -56,9 +56,6 @@ while 1:
 
 for i in range(n):
 	if m_i[i] != 0:
-		a,b = a_b(p)
-		tabla[i]['a'] = a
-		tabla[i]['b'] = b
 		tabla[i]['m'] = m_i[i]
 		tabla[i]['S'] = [0 for i in range(m_i[i])]
 
@@ -66,14 +63,18 @@ for i in range(n):
 #insertar
 for i in range(len(conjunto)):
 	k = conjunto[i]
-	hi = hash() ##continuar aquí
-	tabla[h(k)]['S'][]
-
+	a,b = a_b(p)
+	if m_i[i] != 0:
+		hi = hash(a,b,p,m_i[i]) ##continuar aquí
+		if tabla[h(k)]['S'][hi(k)] == 0:
+			print(hi(k))
+			tabla[h(k)]['S'][hi(k)] = k
+	
 
 
 #print(conjunto)
 
-#print(tabla)
+print(tabla)
 #print(c)
 #print(m_i)
 
