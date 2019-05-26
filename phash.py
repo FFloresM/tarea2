@@ -39,6 +39,7 @@ conjunto = [3, 10, 22, 37, 40, 52, 60, 70, 82, 95]
 p = primo(n)
 tabla = [{} for x in range(n)]
 m_i = []
+sub_conj = {i:[] for i in range(n)}
 
 while 1:
 	a,b = a_b(p)
@@ -48,33 +49,38 @@ while 1:
 		h = hash(a,b,p,m)
 		i = h(k)
 		c[i] = c[i] + 1
+		sub_conj[i].append(k)
 	if h_buena(c, n):
+
 		for i in c:
 			m_i.append(i**2)
 		break
 
-
+#elimina innecesarios
 for i in range(n):
-	if m_i[i] != 0:
-		tabla[i]['m'] = m_i[i]
-		tabla[i]['S'] = [0 for i in range(m_i[i])]
+	if len(sub_conj[i])==0:
+		del(sub_conj[i])
 
 
 #insertar
-for i in range(len(conjunto)):
+for i in range(n):
 	k = conjunto[i]
 	a,b = a_b(p)
 	if m_i[i] != 0:
+		tabla[i]['m'] = m_i[i]
+		tabla[i]['S'] = [None for i in range(m_i[i])]
+
 		hi = hash(a,b,p,m_i[i]) ##continuar aquí
-		if tabla[h(k)]['S'][hi(k)] == 0:
-			print(hi(k))
-			tabla[h(k)]['S'][hi(k)] = k
-	
+	#	if tabla[h(k)]['S'][hi(k)] == 0:
+	#		print(hi(k))
+	#		tabla[h(k)]['S'][hi(k)] = k
+
+#elimina no usados
+tabla = list(filter(lambda a: a != {}, tabla))
 
 
-#print(conjunto)
-
-print(tabla)
+print(sub_conj)
+print(tabla,len(tabla))
 #print(c)
 #print(m_i)
 
