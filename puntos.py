@@ -1,7 +1,9 @@
 import random as rd
+import sys
+from time import time
 
 def S(n):
-	return set(rd.randint(0,1000) for x in range(n))
+	return set(rd.randint(0,10000) for x in range(n))
 
 def primo(n,c):
 	for x in range(1,max(c)**2):
@@ -41,13 +43,18 @@ def buscar(x, h, t):
 		hi = hash(a,b,p,m)
 		k = hi(x)
 		if t[i]['S'][k] == x:
-			print ("elemento",x,"en\nTabla 1 pos:",i,"\nTabla 2 pos:",k)
+			pass
+		#	print ("elemento",x,"en\nTabla 1 pos:",i,"\nTabla 2 pos:",k)
 		else:
-			print(x,"no existe en la tabla (try)")
+			print(x,"no existe en la tabla :|")
 	except KeyError:
-		print(x,"no existe en la tabla (except)")
+		print("KeyError:",x,"no existe en la tabla :(")
+	
+	
+	
 
-n = 10
+n = int(sys.argv[1])
+#find = int(sys.argv[2])
 m = n
 conjunto = S(n)
 p = primo(n,conjunto)
@@ -55,6 +62,7 @@ tabla = [{} for x in range(n)]
 m_i = []
 sub_conj = {i:[] for i in range(n)}
 
+#ini_t = time()
 #determinar h de primer nivel
 while 1:
 	a,b = a_b(p)
@@ -84,7 +92,7 @@ for i in range(n):
 ci = [] 
 #determinar h_i para tabla de segundo nivel
 for i in sub_conj:
-	print(sub_conj[i])
+	#print(sub_conj[i])
 	while 1:
 		a,b = a_b(p)
 		m = tabla[i]['m']
@@ -102,7 +110,11 @@ for i in sub_conj:
 			tabla[i]['b'] = b
 			break
 
-print(tabla)
-buscar(60,h,tabla)
+##buscar 10 numero aleatorios
+ini_t = time()
+for i in range(10):
+	find = rd.choice(list(conjunto))	
+	buscar(find,h,tabla)
+total_t = time() - ini_t
 
-
+print('{0} {1:.5f}'.format(len(tabla), total_t))
