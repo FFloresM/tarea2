@@ -32,6 +32,14 @@ def h_buena(c,n):
 		return True
 	return False
 
+def buscar(x, h, t):
+	i = h(x)
+	a = t[i]['a']
+	b = t[i]['b']
+	m = t[i]['m']
+	hi = hash(a,b,p,m)
+	k = hi(x)
+	print ("elemento",x,"en\nTabla 1 pos:",i,"\nTabla 2 pos:",k)
 
 n = 10
 m = n
@@ -70,9 +78,9 @@ for i in range(n):
 ci = [] 
 #determinar h_i para tabla de segundo nivel
 for i in sub_conj:
+	print(sub_conj[i])
 	while 1:
 		a,b = a_b(p)
-
 		m = tabla[i]['m']
 		ci = [0 for x in range(m)]
 		hi = hash(a,b,p,m)
@@ -87,7 +95,8 @@ for i in sub_conj:
 			tabla[i]['a'] = a
 			tabla[i]['b'] = b
 			break
-		
+
 print(tabla)
+buscar(60,h,tabla)
 
 
