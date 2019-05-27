@@ -89,7 +89,7 @@ for i in sub_conj:
 			tabla[i]['S'][j] = k
 			if ci[j] == 0:
 				ci[j] = 1
-			elif ci[j] == 1:
+			elif ci[j] >= 1:
 				ci[j] = -1
 		if -1 not in ci:
 			tabla[i]['a'] = a
