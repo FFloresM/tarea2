@@ -1,7 +1,7 @@
 import random as rd
 
 def S(n):
-	return set(rd.randint(0,1000) for x in range(n))
+	return set(rd.randint(0,100000) for x in range(n))
 
 def primo(n,c):
 	for x in range(1,max(c)**2):
@@ -47,7 +47,8 @@ def buscar(x, h, t):
 	except KeyError:
 		print(x,"no existe en la tabla (except)")
 
-n = 10
+n = int(sys.argv[1])
+find = int(sys.argv[2])
 m = n
 conjunto = S(n)
 p = primo(n,conjunto)
@@ -103,6 +104,6 @@ for i in sub_conj:
 			break
 
 print(tabla)
-buscar(60,h,tabla)
+buscar(find,h,tabla)
 
 

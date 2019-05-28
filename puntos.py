@@ -3,16 +3,16 @@ import sys
 from time import time
 
 def S(n):
-	return set(rd.randint(0,10000) for x in range(n))
+	return set(rd.randint(0,10000000) for x in range(n))
 
 def primo(n,c):
-	for x in range(1,max(c)**2):
+	for x in range(1,len(c)*2):
 		if x > 1: 
 			for i in range(2,x):
 				if (x % i) == 0:
 					break
 			else:
-				if x > max(c):
+				if x > len(c):
 					return x
 
 
@@ -30,6 +30,7 @@ def h_buena(c,n):
 	for i in range(n):
 		x.append(c[i]**2)
 	s = sum(x)
+	print(s,4*n)
 	if s < 4*n:
 		return True
 	return False
@@ -43,8 +44,7 @@ def buscar(x, h, t):
 		hi = hash(a,b,p,m)
 		k = hi(x)
 		if t[i]['S'][k] == x:
-			pass
-		#	print ("elemento",x,"en\nTabla 1 pos:",i,"\nTabla 2 pos:",k)
+			print ("elemento",x,"en\nTabla 1 pos:",i,"\nTabla 2 pos:",k)
 		else:
 			print(x,"no existe en la tabla :|")
 	except KeyError:
@@ -57,6 +57,7 @@ n = int(sys.argv[1])
 #find = int(sys.argv[2])
 m = n
 conjunto = S(n)
+#print(conjunto)
 p = primo(n,conjunto)
 tabla = [{} for x in range(n)]
 m_i = []
@@ -74,10 +75,11 @@ while 1:
 		c[i] = c[i] + 1
 		sub_conj[i].append(k)
 	if h_buena(c, n):
-
 		for i in c:
 			m_i.append(i**2)
 		break
+
+
 
 #elimina innecesarios
 for i in range(n):
@@ -111,10 +113,13 @@ for i in sub_conj:
 			break
 
 ##buscar 10 numero aleatorios
+
 ini_t = time()
 for i in range(10):
 	find = rd.choice(list(conjunto))	
 	buscar(find,h,tabla)
 total_t = time() - ini_t
 
-print('{0} {1:.5f}'.format(len(tabla), total_t))
+
+
+print('{0} {1:.2f}'.format(len(tabla), total_t))

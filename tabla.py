@@ -1,5 +1,5 @@
 import os
-"""
+
 exist = os.path.isfile("t_crear_tabla")
 if exist:
 	os.remove('t_crear_tabla')
@@ -9,7 +9,7 @@ for i in range(1,21):
 	cmd = cmd+' >> t_crear_tabla'
 	#print(cmd)
 	os.system(cmd)
-"""
+
 exist = os.path.isfile("t_busqueda_ale")
 if exist:
 	os.remove('t_busqueda_ale')
